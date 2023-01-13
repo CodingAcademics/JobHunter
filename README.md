@@ -12,7 +12,7 @@ DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts
 --------------
 
 
-### Project Prep 4 UML documentation requirements
+### UML documentation requirements
 <img src = "" />
 
 ------------
