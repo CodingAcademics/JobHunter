@@ -1,5 +1,9 @@
 # Project Job Hunter
 DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
+
+<img src = "<img width="791" alt="job hunter logo" src="https://user-images.githubusercontent.com/107225817/212418661-7e42a0d9-c000-45b9-bd34-a12e1db7acd4.png">
+" />
+
 ### Overview
 -  An automated job application tool that uses web scraping to gather job listings from various job websites, uses regex to extract relevant information such as job title, company, and application link, and then uses remote APIs to gather information about the companies and the application process.
 
