@@ -1,4 +1,4 @@
-# Project Job Hunter
+# Job Hunter
 DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
 
 <img width="791" alt="job hunter logo" src="https://user-images.githubusercontent.com/107225817/212418661-7e42a0d9-c000-45b9-bd34-a12e1db7acd4.png">
