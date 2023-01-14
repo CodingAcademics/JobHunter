@@ -13,7 +13,14 @@ DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
 
 
 ### UML documentation requirements
-<img src = "" />
+
+![Whiteboard Image](./images/1.png)
+![Whiteboard Image](./images/2.png)
+![Whiteboard Image](./images/4.png)
+![Whiteboard Image](./images/5.png)
+![Whiteboard Image](./images/6.png)
+![Whiteboard Image](./images/7.png)
+![Whiteboard Image](./images/3.png)
 
 ------------
 
