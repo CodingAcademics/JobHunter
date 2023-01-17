@@ -1,23 +1,48 @@
-from playwright.async_api import async_playwright
-import asyncio
+from scrapingbee import ScrapingBeeClient
+from bs4 import BeautifulSoup
+import re
 
 
-async def main():
-    async with async_playwright() as pw:
-        browser = await pw.chromium.launch(headless=False)
+def main():
+    headers = {
+        "User-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 "
+                      "Safari/537.36"}
 
-        page = await browser.new_page()
+    client = ScrapingBeeClient(
+        api_key='C3PV0GKBFWRXZLUSC71E83Y43YL0UDXG0O14RISX275W2C5PN7YOI68KT3TZKDD01DWOLGJEMB81409C')
 
-        await page.goto("https://www.linkedin.com/jobs/search?trk=guest_homepage-basic_guest_nav_menu_jobs&position=1"
-                        "&pageNum=0")
+    # Skills & Place of Work
+    skill = input('Enter your Skill: ').strip()
+    city = input('Enter the location: ').strip()
+    pages = int(input('Enter the # of pages you want to search: '))
 
-        await page.wait_for_timeout(1000)
+    for page in range(pages):
+        client = ScrapingBeeClient(
+            api_key='C3PV0GKBFWRXZLUSC71E83Y43YL0UDXG0O14RISX275W2C5PN7YOI68KT3TZKDD01DWOLGJEMB81409C')
+        # Connecting to zip recruiter
+        url = 'https://www.ziprecruiter.com/jobs-search?search=' + skill + \
+              '&l=' + city + '&sort=date' + '&start=' + str(page * 10)
 
-        title_element = await page.query_selector("title")
-        title_text = await title_element.inner_text()
-        print(title_text)
+        # Get request to indeed with headers above
+        response = client.get(url, headers=headers)
+        html = response.content
 
-        await browser.close()
+        soup = BeautifulSoup(html, 'html.parser')
+
+        cards = soup.find_all('article', 'new_job_item job_item')
+
+        for card in cards:
+            title = card.h2.text.strip()
+            location = card.find('a', 'company_location').text.strip()
+            description = card.find('p', 'job_snippet').text.strip()
+            salary = card.find('div', 'value').text.strip()
+            apply = card.find('div', {'class': 'job_actions'}).find('a')['href']
+            print(f'JOB TITLE: {title}')
+            print(f'CITY: {location}')
+            print(f'SUMMARY: {description}')
+            print(f'PAY RATE: {salary}')
+            print(f'CLICK TO APPLY: {apply}')
+
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()
