@@ -1,23 +1,18 @@
-import requests
 import cloudscraper
 from bs4 import BeautifulSoup
 from rich.console import Console
 from rich.table import Table
 
 
-def main():
-    skill = input('Enter your Skill: ').strip()
-    city = input('Enter the location: ').strip()
-    pages = int(input('Enter the # of pages you want to search: '))
-
-    table = Table(title='Job Hunter' )
+def scraper_indeed(skill, city, pages):
+    table = Table(title='Job Hunter')
 
     table.add_column("DATE", style="cyan")
     table.add_column("TITLE", style="cyan")
     table.add_column("COMPANY", style="cyan")
     table.add_column("LOCATION", style="cyan")
 
-    for page in range (pages):
+    for page in range(pages):
         scraper = cloudscraper.create_scraper()
         url = 'https://www.indeed.com/jobs?q=' + skill + '&l=' + city + '&sort=date' + '&start=' + str(page * 10)
         page = scraper.get(url)
@@ -42,8 +37,9 @@ def main():
 
             table.add_row(f'{job_postdate}', f'{job_title}', f'{company_name}', f'{job_location}')
 
-        console = Console()
-        console.print(table)
+    console = Console()
+    console.print(table)
+
 
 if __name__ == '__main__':
-    main()
+    scraper_indeed()
