@@ -2,6 +2,8 @@ import os
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from scrapingbee import ScrapingBeeClient
+from rich.console import Console
+from rich.table import Table
 
 
 # environment variable
@@ -43,19 +45,33 @@ def main():
             salary = card.find('div', 'value').text.strip() if card.find('div', 'value') else None
             apply = card.find('div', {'class': 'job_actions'}).find('a')['href'] if card.find('div', {
                 'class': 'job_actions'}).find('a') else None
-            if title:
-                print(f'JOB TITLE: {title}')
-            if location:
-                print(f'CITY: {location}')
-            if description:
-                print(f'SUMMARY: {description}')
-            if salary:
-                print(f'PAY RATE: {salary}')
-            if apply:
-                print(f'CLICK TO APPLY: {apply}')
 
-            else:
-                print('I got nothing for you.')
+            table = Table(title='Job Hunter')
+
+            table.add_column("DATES", style="cyan")
+            table.add_column()
+            table.add_column()
+
+            table.add_row("")
+            table.add_row()
+            table.add_row()
+
+            console = Console()
+            console.print(table)
+
+            # if title:
+            #     print(f'JOB TITLE: {title}')
+            # if location:
+            #     print(f'CITY: {location}')
+            # if description:
+            #     print(f'SUMMARY: {description}')
+            # if salary:
+            #     print(f'PAY RATE: {salary}')
+            # if apply:
+            #     print(f'CLICK TO APPLY: {apply}')
+            #
+            # else:
+            #     print('I got nothing for you.')
 
 
 if __name__ == '__main__':
