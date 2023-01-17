@@ -7,6 +7,7 @@ beautifulsoup4==4.11.1
 bs4==0.0.1
 certifi==2022.12.7
 charset-normalizer==3.0.1
+cloudscraper==1.2.68
 commonmark==0.9.1
 cssselect==1.2.0
 Cython==0.29.33
@@ -33,6 +34,7 @@ provider==0.1.0
 pyee==9.0.4
 pyfiglet==0.8.post1
 Pygments==2.14.0
+pyparsing==3.0.9
 pyppeteer==1.0.2
 pyquery==2.0.0
 PySocks==1.7.1
@@ -40,12 +42,15 @@ pytest==7.2.1
 pytest-base-url==2.0.0
 pytest-playwright==0.3.0
 python-dateutil==2.8.2
+python-dotenv==0.21.0
 python-slugify==7.0.0
 requests==2.28.2
 requests-html==0.10.0
+requests-toolbelt==0.10.1
 rfc3986==2.0.0
 rich==13.1.0
 scrapfly-sdk==0.8.4
+scrapingbee==1.1.8
 selectolax==0.3.12
 selenium==4.7.2
 six==1.16.0
