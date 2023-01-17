@@ -37,3 +37,7 @@ DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
 - `git clone https://github.com/CodingAcademics/Back-End`
 - cd into the directory
 - type `python3.11 ./jobhunter/jobhunter.py` into terminal while inside the directory
+
+
+## Resources
+[Google Chrome Stable](https://stackoverflow.com/questions/27423684/unable-to-locate-package-google-chrome-stable-ubuntu12-on-openstack)
