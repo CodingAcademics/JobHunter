@@ -54,7 +54,10 @@ def scraper_simply_hired(skill, city, pages):
             company_name = card.find('h3', 'jobposting-title').text.strip() if card.find('h3',
                                                                                          'jobposting-title') else None
             salary = card.find('div', 'jobposting-salary SerpJob-salary').text.strip() if card.find('div',
-                                                                                                    'jobposting-salary SerpJob-salary') else None
+                                                                                                    'jobposting'
+                                                                                                    '-salary '
+                                                                                                    'SerpJob-salary')\
+                else None
             apply = 'https://www.simplyhired.com' + card.find('h3', {'class': 'jobposting-title'}).find('a')[
                 'href'] if card.find('h3', {'class': 'jobposting-title'}).find('a') else None
 
