@@ -1,30 +1,31 @@
-import requests
 import cloudscraper
 from bs4 import BeautifulSoup
 from rich.console import Console
 from rich.table import Table
 
 
-def main():
-    skill = input('Enter your Skill: ').strip()
-    city = input('Enter the location: ').strip()
-    pages = int(input('Enter the # of pages you want to search: '))
+def scraper_indeed(skill, city, pages):
+    table = Table(title='Job Hunter')
 
-    table = Table(title='Job Hunter' )
-
+    table.add_column("#", style="cyan")
     table.add_column("DATE", style="cyan")
     table.add_column("TITLE", style="cyan")
     table.add_column("COMPANY", style="cyan")
     table.add_column("LOCATION", style="cyan")
 
-    for page in range (pages):
+    for page in range(pages):
         scraper = cloudscraper.create_scraper()
         url = 'https://www.indeed.com/jobs?q=' + skill + '&l=' + city + '&sort=date' + '&start=' + str(page * 10)
         page = scraper.get(url)
         soup = BeautifulSoup(page.content, "html.parser")
         jobs = soup.find_all('div', 'job_seen_beacon')
 
+        set_count = []
+        count = 1
+
         for job in jobs:
+
+            # count_num = []
             job_title = job.h2.text
             company_name = job.find('span', 'companyName').text
             job_location = job.find('div', 'companyLocation').text
@@ -40,10 +41,31 @@ def main():
             except AttributeError:
                 job_salary = ''
 
-            table.add_row(f'{job_postdate}', f'{job_title}', f'{company_name}', f'{job_location}')
+            record = (job_title, company_name, job_location, job_link, job_description, job_salary)
 
-        console = Console()
-        console.print(table)
+            set_count.append(record)
+
+            table.add_row(f'{count}', f'{job_postdate}', f'{job_title}', f'{company_name}', f'{job_location}')
+
+            count += 1
+
+    console = Console()
+    console.print(table)
+
+    number = int(input('Which job would you like to see more details about: '))
+
+    posting = set_count[number-1]
+
+    table = Table(title=f'{posting[0]}')
+    table.add_column('DATE', style="cyan")
+    table.add_column('LOCATION', style="cyan")
+    table.add_column('LINK', style="cyan")
+    table.add_column('DESCRIPTION', style="cyan")
+    table.add_row(f'{posting[1]}', f'{posting[2]}', f'{posting[3]}', f'{posting[4]}')
+
+    console = Console()
+    console.print(table)
+
 
 if __name__ == '__main__':
-    main()
+    scraper_indeed()

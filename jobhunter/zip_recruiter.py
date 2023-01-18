@@ -11,18 +11,23 @@ def configure():
     load_dotenv()
 
 
-def main():
+def scraper_zip_recruiter(skill, city, pages):
+
     configure()
+
     headers = {
         "User-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 "
                       "Safari/537.36"}
 
     client = ScrapingBeeClient(os.getenv('api_key'))
 
-    # Skills & Place of Work
-    skill = input('Enter your Skill: ').strip()
-    city = input('Enter the location: ').strip()
-    pages = int(input('Enter the # of pages you want to search: '))
+    table = Table(title='Job Hunter')
+
+    table.add_column("#", style="cyan")
+    table.add_column("SALARY", style="cyan")
+    table.add_column("TITLE", style="cyan")
+    table.add_column("COMPANY", style="cyan")
+    table.add_column("LOCATION", style="cyan")
 
     for page in range(pages):
         client = ScrapingBeeClient(os.getenv('api_key'))
@@ -38,41 +43,44 @@ def main():
 
         cards = soup.find_all('article', 'new_job_item job_item')
 
+        set_count = []
+        count = 1
+
         for card in cards:
             title = card.h2.text.strip() if card.h2 else None
             location = card.find('a', 'company_location').text.strip() if card.find('a', 'company_location') else None
+            company_name = card.find('div', 'company_name_row').text.strip() if card.find('div', 'company_name_row') else None
             description = card.find('p', 'job_snippet').text.strip() if card.find('p', 'job_snippet') else None
             salary = card.find('div', 'value').text.strip() if card.find('div', 'value') else None
             apply = card.find('div', {'class': 'job_actions'}).find('a')['href'] if card.find('div', {
                 'class': 'job_actions'}).find('a') else None
 
-            table = Table(title='Job Hunter')
+            record = (title, company_name, location, apply, description, salary)
 
-            table.add_column("DATES", style="cyan")
-            table.add_column()
-            table.add_column()
+            set_count.append(record)
 
-            table.add_row("")
-            table.add_row()
-            table.add_row()
+            table.add_row(f'{count}', f'{salary}', f'{title}', f'{company_name}', f'{location}')
 
-            console = Console()
-            console.print(table)
+            count += 1
 
-            # if title:
-            #     print(f'JOB TITLE: {title}')
-            # if location:
-            #     print(f'CITY: {location}')
-            # if description:
-            #     print(f'SUMMARY: {description}')
-            # if salary:
-            #     print(f'PAY RATE: {salary}')
-            # if apply:
-            #     print(f'CLICK TO APPLY: {apply}')
-            #
-            # else:
-            #     print('I got nothing for you.')
+
+    console = Console()
+    console.print(table)
+
+    number = int(input('Which job would you like to see more details about: '))
+
+    posting = set_count[number-1]
+
+    table = Table(title=f'{posting[0]}')
+    table.add_column('DATE', style="cyan")
+    table.add_column('LOCATION', style="cyan")
+    table.add_column('LINK', style="cyan")
+    table.add_column('DESCRIPTION', style="cyan")
+    table.add_row(f'{posting[1]}', f'{posting[2]}', f'{posting[3]}', f'{posting[4]}')
+
+    console = Console()
+    console.print(table)
 
 
 if __name__ == '__main__':
-    main()
+    scraper_zip_recruiter()
