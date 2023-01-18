@@ -12,7 +12,9 @@ def configure():
 
 
 def scraper_zip_recruiter(skill, city, pages):
+
     configure()
+
     headers = {
         "User-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 "
                       "Safari/537.36"}
@@ -21,6 +23,7 @@ def scraper_zip_recruiter(skill, city, pages):
 
     table = Table(title='Job Hunter')
 
+    table.add_column("#", style="cyan")
     table.add_column("SALARY", style="cyan")
     table.add_column("TITLE", style="cyan")
     table.add_column("COMPANY", style="cyan")
@@ -40,6 +43,9 @@ def scraper_zip_recruiter(skill, city, pages):
 
         cards = soup.find_all('article', 'new_job_item job_item')
 
+        set_count = []
+        count = 1
+
         for card in cards:
             title = card.h2.text.strip() if card.h2 else None
             location = card.find('a', 'company_location').text.strip() if card.find('a', 'company_location') else None
@@ -49,7 +55,28 @@ def scraper_zip_recruiter(skill, city, pages):
             apply = card.find('div', {'class': 'job_actions'}).find('a')['href'] if card.find('div', {
                 'class': 'job_actions'}).find('a') else None
 
-            table.add_row(f'{salary}', f'{title}', f'{company_name}', f'{location}')
+            record = (title, company_name, location, apply, description, salary)
+
+            set_count.append(record)
+
+            table.add_row(f'{count}', f'{salary}', f'{title}', f'{company_name}', f'{location}')
+
+            count += 1
+
+
+    console = Console()
+    console.print(table)
+
+    number = int(input('Which job would you like to see more details about: '))
+
+    posting = set_count[number-1]
+
+    table = Table(title=f'{posting[0]}')
+    table.add_column('DATE', style="cyan")
+    table.add_column('LOCATION', style="cyan")
+    table.add_column('LINK', style="cyan")
+    table.add_column('DESCRIPTION', style="cyan")
+    table.add_row(f'{posting[1]}', f'{posting[2]}', f'{posting[3]}', f'{posting[4]}')
 
     console = Console()
     console.print(table)
