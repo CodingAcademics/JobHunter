@@ -54,7 +54,17 @@ def scraper_indeed(skill, city, pages):
 
     number = int(input('Which job would you like to see more details about: '))
 
-    print(set_count[number - 1])
+    posting = set_count[number-1]
+
+    table = Table(title=f'{posting[0]}')
+    table.add_column('DATE', style="cyan")
+    table.add_column('LOCATION', style="cyan")
+    table.add_column('LINK', style="cyan")
+    table.add_column('DESCRIPTION', style="cyan")
+    table.add_row(f'{posting[1]}', f'{posting[2]}', f'{posting[3]}', f'{posting[4]}')
+
+    console = Console()
+    console.print(table)
 
 
 if __name__ == '__main__':
