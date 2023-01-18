@@ -7,6 +7,7 @@ from rich.table import Table
 def scraper_indeed(skill, city, pages):
     table = Table(title='Job Hunter')
 
+    table.add_column("#", style="cyan")
     table.add_column("DATE", style="cyan")
     table.add_column("TITLE", style="cyan")
     table.add_column("COMPANY", style="cyan")
@@ -19,7 +20,12 @@ def scraper_indeed(skill, city, pages):
         soup = BeautifulSoup(page.content, "html.parser")
         jobs = soup.find_all('div', 'job_seen_beacon')
 
+        set_count = []
+        count = 1
+
         for job in jobs:
+
+            # count_num = []
             job_title = job.h2.text
             company_name = job.find('span', 'companyName').text
             job_location = job.find('div', 'companyLocation').text
@@ -35,10 +41,20 @@ def scraper_indeed(skill, city, pages):
             except AttributeError:
                 job_salary = ''
 
-            table.add_row(f'{job_postdate}', f'{job_title}', f'{company_name}', f'{job_location}')
+            record = (job_title, company_name, job_location, job_link, job_description, job_salary)
+
+            set_count.append(record)
+
+            table.add_row(f'{count}', f'{job_postdate}', f'{job_title}', f'{company_name}', f'{job_location}')
+
+            count += 1
 
     console = Console()
     console.print(table)
+
+    number = int(input('Which job would you like to see more details about: '))
+
+    print(set_count[number - 1])
 
 
 if __name__ == '__main__':
