@@ -1,53 +1,33 @@
-import platform
-
-"""
-# Filename: run_selenium.py
-"""
-
-## Run selenium and chrome driver to scrape data from cloudbytes.dev
-import time
-import os.path
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-
-## Setup chrome options
-chrome_options = Options()
-chrome_options.add_argument("--headless") # Ensure GUI is off
-chrome_options.add_argument("--no-sandbox")
-
-# Set path to chromedriver as per your configuration
-homedir = os.path.expanduser("~")
-webdriver_service = Service(f"{homedir}/chromedriver/stable/chromedriver")
-
-# Choose Chrome Browser
-browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
-
-# Get page
-browser.get("https://cloudbytes.dev")
-
-# Extract description from page and print
-description = browser.find_element(By.NAME, "description").get_attribute("content")
-print(f"{description}")
-
-#Wait for 10 seconds
-time.sleep(10)
-browser.quit()
+# import os
+from playwright.sync_api import Playwright, sync_playwright, expect
 
 
-## if wsl wslview platform.system()
-## if 'Linux' run wslview $url
-## if 'Darwin'open Url
-## if mac open()
+def run(playwright: Playwright) -> None:
+  browser = playwright.chromium.launch(headless=False)
+  # app_data_path = os.getenv("LOCALAPPDATA")
+  # user_data_path = os.path.join(app_data_path, 'Chromium\\USER DATA\\Default')
+  # context = playwright.chromium.launch_persistent_context(user_data_path, headless=False)
+  context = browser.new_context()
+  page = context.new_page()
 
-'''
->>> import os
->>> os.name
-'posix'
->>> import platform
->>> platform.system()
-'Linux'
->>>
+  page.goto("https://www.google.com/")
+  # page.wait_for_timeout(5000)
 
-'''
+with sync_playwright() as playwright:
+  run(playwright)
+
+    # if wsl wslview platform.system()
+    # if 'Linux' run wslview $url
+    # if 'Darwin'open Url
+    # if mac open()
+
+# """
+# >>> import os
+# >>> os.name
+# 'posix'
+# >>> import platform
+# >>> platform.system()
+# 'Linux'
+# >>>
+
+# """
