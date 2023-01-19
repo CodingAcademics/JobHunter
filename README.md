@@ -28,11 +28,11 @@ DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
 
 ### UML documentation requirements
 
+![Whiteboard Image](./images/13.png)
+![Whiteboard Image](./images/14.png)
+![Whiteboard Image](./images/15.png)
 ![Whiteboard Image](./images/1.png)
-![Whiteboard Image](./images/2.png)
 ![Whiteboard Image](./images/4.png)
-![Whiteboard Image](./images/5.png)
-![Whiteboard Image](./images/6.png)
 ![Whiteboard Image](./images/7.png)
 
 ---
@@ -95,6 +95,22 @@ $ JobHunter/interface.py
 - [pyfiglet for Terminal styling](https://pypi.org/project/pyfiglet/0.7/)
 
 - [Scrapfly Web scraping API documentation](https://scrapfly.io/docs)
+
+- [Mr Fugu](https://www.youtube.com/watch?v=8XWm99Et0tc)
+
+- [401Github](https://github.com/codefellows/seattle-code-python-401d20/blob/main/class-17/demo/cf-courses/playwright_scraper.py)
+
+- [ScrapingBee](https://www.scrapingbee.com/?utm_source=google&utm_medium=cpc&utm_campaign=googletax-1&utm_source=google&utm_medium=cpc&utm_campaign=googletax-1&utm_term=scrapingbee)
+
+- [IzzyAnalytics](https://www.youtube.com/watch?v=eN_3d4JrL_w)
+
+- [Tech With Tim](https://www.youtube.com/watch?v=gRLHr664tXA)
+
+- [StackOverFlow](https://stackoverflow.com/questions/71484660/nonetype-object-has-no-attribute-find-all-error)
+
+- [BetterProgramming](https://betterprogramming.pub/designing-beautiful-command-line-applications-with-python-72bd2f972ea)
+
+- [BeautifulSoup Docs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
 ## Reach out if you want to know more
 
