@@ -1,33 +1,41 @@
-# import os
-from playwright.sync_api import Playwright, sync_playwright, expect
+import time
+from playwright.sync_api import sync_playwright
+import sys
 
 
-def run(playwright: Playwright) -> None:
-  browser = playwright.chromium.launch(headless=False)
-  # app_data_path = os.getenv("LOCALAPPDATA")
-  # user_data_path = os.path.join(app_data_path, 'Chromium\\USER DATA\\Default')
-  # context = playwright.chromium.launch_persistent_context(user_data_path, headless=False)
-  context = browser.new_context()
-  page = context.new_page()
+def main(url, button, selector):
+    with sync_playwright() as p:
+        browser = p.firefox.launch(headless=False, slow_mo=1000)
+        page = browser.new_page()
+        page.goto(url)
+        apply_button = page.query_selector(button)
+        if apply_button:
+            apply_button.click()
+        else:
+            apply_button = page.query_selector(button)
+            if not apply_button:
+                apply_button = page.query_selector(selector)
+            if apply_button:
+                apply_button.click()
 
-  page.goto("https://www.google.com/")
-  # page.wait_for_timeout(5000)
+            print('Do you want to exit program? (y)es or (n)o?')
+            choice = input("> ")
+            if choice == "y":
+                sys.exit()
+            if choice == "n":
+                browser = p.firefox.launch(headless=False, slow_mo=1000)
+                page = browser.new_page()
+                page.goto(url)
+                apply_button = page.query_selector(button)
+                if apply_button:
+                    apply_button.click()
+                else:
+                    apply_button = page.query_selector(button)
+                    if not apply_button:
+                        apply_button = page.query_selector(selector)
+                    if apply_button:
+                        apply_button.click()
+                        sys.exit()
+        time.sleep(300)
 
-with sync_playwright() as playwright:
-  run(playwright)
-
-    # if wsl wslview platform.system()
-    # if 'Linux' run wslview $url
-    # if 'Darwin'open Url
-    # if mac open()
-
-# """
-# >>> import os
-# >>> os.name
-# 'posix'
-# >>> import platform
-# >>> platform.system()
-# 'Linux'
-# >>>
-
-# """
+    browser.close()

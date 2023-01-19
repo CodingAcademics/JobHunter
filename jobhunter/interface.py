@@ -1,24 +1,24 @@
 import pyfiglet
 from rich.console import Console
 from rich.markdown import Markdown
-from indeed import scraper_indeed
-from simplyhired import scraper_simply_hired
-from zip_recruiter import scraper_zip_recruiter
 from rich.progress import track
 import time
 
+import indeed
+import simplyhired
+import zip_recruiter
+
+
+def search_job(scraper_func, skill, city, pages):
+    for _ in track(range(100), description='Searching Jobs....'):
+        time.sleep(0.05)
+    scraper_func(skill, city, pages)
+
 
 def welcome():
-    print(pyfiglet.figlet_format(
-        "Welcome to\nJob Hunter", font="slant", justify="center"))
-    print(
-        """
-    *******************************************************
-    *** would you like us to find possible jobs for you ***
-    *******************************************************
-    """)
-    print("(y)es I would like to look for a job or (n)o to exit")
-    choice = input("> ")
+    print(pyfiglet.figlet_format("Welcome to\nJob Hunter", font="slant", justify="center"))
+    print("Would you like us to search for a job (y)es or (n)o?")
+    choice = input("> ").lower()
     if choice == "y":
         your_job()
     if choice == "n":
@@ -26,37 +26,29 @@ def welcome():
 
 
 def your_job():
-    # Skills & Place of Work
-    skill = input('Enter your Skill: ').strip()
+    skill = input('What position are you searching for: ').strip()
     city = input('Enter the location: ').strip()
-    pages = int(input('Enter the # of pages you want to search: '))
+    pages = int(input('How many pages do you want us to search through: '))
 
     MARKDOWN = """
-                                             OVERVIEW
+                                         OVERVIEW
     1. Indeed
     2. SimplyHired
     3. Zip Recruiter
-    
     """
 
     console = Console()
     md = Markdown(MARKDOWN)
     console.print(md)
 
-    choice = input("> ")
+    choice = int(input("> "))
 
-    if choice == "1":
-        for i in track(range(100), description='Searching Jobs....'):
-            time.sleep(0.02)
-        scraper_indeed(skill, city, pages)
-    if choice == "2":
-        for i in track(range(100), description='Searching Jobs....'):
-            time.sleep(0.20)
-        scraper_simply_hired(skill, city, pages)
-    if choice == "3":
-        for i in track(range(100), description='Searching Jobs....'):
-            time.sleep(0.20)
-        scraper_zip_recruiter(skill, city, pages)
+    if choice == 1:
+        search_job(indeed.scraper_indeed, skill, city, pages)
+    elif choice == 2:
+        search_job(simplyhired.scraper_simply_hired, skill, city, pages)
+    elif choice == 3:
+        search_job(zip_recruiter.scraper_zip_recruiter, skill, city, pages)
 
 
 if __name__ == '__main__':

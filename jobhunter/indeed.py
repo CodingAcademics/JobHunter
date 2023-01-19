@@ -2,70 +2,123 @@ import cloudscraper
 from bs4 import BeautifulSoup
 from rich.console import Console
 from rich.table import Table
+from rich.progress import track
+import time
+from navigation import main
 
 
 def scraper_indeed(skill, city, pages):
-    table = Table(title='Job Hunter')
+    global set_count
+    job_table = Table(title="Job Hunter")
 
-    table.add_column("#", style="cyan")
-    table.add_column("DATE", style="cyan")
-    table.add_column("TITLE", style="cyan")
-    table.add_column("COMPANY", style="cyan")
-    table.add_column("LOCATION", style="cyan")
+    job_table.add_column("#", style="cyan")
+    job_table.add_column("DATE", style="cyan")
+    job_table.add_column("TITLE", style="cyan")
+    job_table.add_column("COMPANY", style="cyan")
+    job_table.add_column("LOCATION", style="cyan")
 
     for page in range(pages):
         scraper = cloudscraper.create_scraper()
-        url = 'https://www.indeed.com/jobs?q=' + skill + '&l=' + city + '&sort=date' + '&start=' + str(page * 10)
+        url = (
+            "https://www.indeed.com/jobs?q="
+            + skill
+            + "&l="
+            + city
+            + "&sort=date"
+            + "&start="
+            + str(page * 10)
+        )
         page = scraper.get(url)
         soup = BeautifulSoup(page.content, "html.parser")
-        jobs = soup.find_all('div', 'job_seen_beacon')
+        jobs = soup.find_all("div", "job_seen_beacon")
 
         set_count = []
         count = 1
 
         for job in jobs:
 
-            # count_num = []
             job_title = job.h2.text
-            company_name = job.find('span', 'companyName').text
-            job_location = job.find('div', 'companyLocation').text
-            job_link = 'https://www.indeed.com' + job.find('h2', {'class': 'jobTitle'}).find('a')['href']
+            company_name = job.find("span", "companyName").text
+            job_location = job.find("div", "companyLocation").text
+            job_link = (
+                "https://www.indeed.com"
+                + job.find("h2", {"class": "jobTitle"}).find("a")["href"]
+            )
             try:
-                job_description = job.find('div', 'job-snippet').text
+                job_description = job.find("div", "job-snippet").text
             except AttributeError:
-                job_description = ''
+                job_description = ""
 
-            job_postdate = job.find('span', 'date').text
+            job_postdate = job.find("span", "date").text
             try:
-                job_salary = job.find('div', 'salaryOnly').text
+                job_salary = job.find("div", "salaryOnly").text
             except AttributeError:
-                job_salary = ''
+                job_salary = ""
 
-            record = (job_title, company_name, job_location, job_link, job_description, job_salary)
+            record = (
+                job_title,
+                company_name,
+                job_location,
+                job_link,
+                job_description,
+                job_salary,
+            )
 
             set_count.append(record)
 
-            table.add_row(f'{count}', f'{job_postdate}', f'{job_title}', f'{company_name}', f'{job_location}')
+            job_table.add_row(
+                f"{count}",
+                f"{job_postdate}",
+                f"{job_title}",
+                f"{company_name}",
+                f"{job_location}",
+            )
 
             count += 1
 
     console = Console()
-    console.print(table)
+    console.print(job_table)
 
-    number = int(input('Which job would you like to see more details about: '))
+    print("Would you like to see more details about a particular job (y)es or (n)o?")
+    choice = input("> ").lower()
+    if choice == "n":
+        exit()
+    if choice == "y":
+        print("Which job do you want details about (select number)")
+        number = int(input("> "))
+        posting = set_count[number - 1]
 
-    posting = set_count[number-1]
+        table = Table(title=f"{posting[0]}")
+        table.add_column("COMPANY NAME", style="cyan")
+        table.add_column("LOCATION", style="cyan")
+        table.add_column("DESCRIPTION", style="cyan")
+        table.add_column("LINK", style="cyan")
+        table.add_row(
+            f"{posting[1]}", f"{posting[2]}", f"{posting[4]}", f"{posting[3]}"
+        )
 
-    table = Table(title=f'{posting[0]}')
-    table.add_column('DATE', style="cyan")
-    table.add_column('LOCATION', style="cyan")
-    table.add_column('LINK', style="cyan")
-    table.add_column('DESCRIPTION', style="cyan")
-    table.add_row(f'{posting[1]}', f'{posting[2]}', f'{posting[3]}', f'{posting[4]}')
+        console = Console()
+        console.print(table)
+        url = f"{posting[3]}"
+        button = "#indeedApplyButton"
+        selector = "//a[text()='Apply on company site']"
+        print("Would you like to apply to this job? (y)es or (n)o")
+        choice = input("> ").lower()
+        if choice == "y":
+            main(url, button, selector)
 
-    console = Console()
-    console.print(table)
+        if choice == "n":
+            exit()
+
+    print("Would you like go back to job listing (y)es or (n)o to quit")
+    choice = input("> ")
+    if choice == "y":
+        for i in track(range(100), description='Searching Jobs....'):
+            time.sleep(0.02)
+        scraper_indeed(skill, city, pages)
+    if choice == "n":
+        exit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     scraper_indeed()
