@@ -1,6 +1,8 @@
 import time
 from playwright.sync_api import sync_playwright
 import sys
+from rich.prompt import Prompt
+from rich.panel import Panel
 
 
 def main(url, button, selector):
@@ -17,9 +19,9 @@ def main(url, button, selector):
                 apply_button = page.query_selector(selector)
             if apply_button:
                 apply_button.click()
-
-            print('Do you want to exit program? (y)es or (n)o?')
-            choice = input("> ")
+            print('Do you want to exit program?')
+            choice = Prompt.ask('> ',
+                                choices=['y', 'n']).lower()
             if choice == "y":
                 sys.exit()
             if choice == "n":
@@ -37,5 +39,4 @@ def main(url, button, selector):
                         apply_button.click()
                         sys.exit()
         time.sleep(300)
-
     browser.close()

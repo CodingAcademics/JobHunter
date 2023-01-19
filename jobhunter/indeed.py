@@ -17,6 +17,7 @@ def scraper_indeed(skill, city, pages):
     job_table.add_column("COMPANY", style="cyan")
     job_table.add_column("LOCATION", style="cyan")
 
+    count = 1
     for page in range(pages):
         scraper = cloudscraper.create_scraper()
         url = (
@@ -33,7 +34,6 @@ def scraper_indeed(skill, city, pages):
         jobs = soup.find_all("div", "job_seen_beacon")
 
         set_count = []
-        count = 1
 
         for job in jobs:
 

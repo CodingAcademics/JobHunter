@@ -1,9 +1,9 @@
 import pyfiglet
-from rich.console import Console
-from rich.markdown import Markdown
+from rich.prompt import Prompt
 from rich.progress import track
 import time
-
+from rich import print
+from rich.panel import Panel
 import indeed
 import simplyhired
 import zip_recruiter
@@ -17,31 +17,29 @@ def search_job(scraper_func, skill, city, pages):
 
 def welcome():
     print(pyfiglet.figlet_format("Welcome to\nJob Hunter", font="slant", justify="center"))
-    print("Would you like us to search for a job (y)es or (n)o?")
-    choice = input("> ").lower()
+    print(Panel.fit("[bold red]Would you like to search for a job?"))
+    choice = Prompt.ask('> ',
+                        choices=['y', 'n']).lower()
     if choice == "y":
         your_job()
     if choice == "n":
-        print("OK. Maybe another time")
+        print(Panel.fit("[bold red]OK. Maybe another time"))
 
 
 def your_job():
-    skill = input('What position are you searching for: ').strip()
-    city = input('Enter the location: ').strip()
-    pages = int(input('How many pages do you want us to search through: '))
+    print(Panel.fit('[bold green]What position are you searching for? '))
+    skill = Prompt.ask('> ').strip()
+    print(Panel.fit('[bold blue]Enter the location: '))
+    city = Prompt.ask('> ').strip()
+    print(Panel.fit('[bold cyan]How many pages do you want us to search through? '))
+    pages = int(Prompt.ask('> ').strip())
 
-    MARKDOWN = """
-                                         OVERVIEW
-    1. Indeed
-    2. SimplyHired
-    3. Zip Recruiter
-    """
+    print(pyfiglet.figlet_format("OVERVIEW", font="slant", justify="center"))
+    print(Panel.fit("[bold blue]1. Indeed | [bold purple]2. SimplyHired | [bold green]3. Zip Recruiter", border_style='none', width=100))
 
-    console = Console()
-    md = Markdown(MARKDOWN)
-    console.print(md)
-
-    choice = int(input("> "))
+    print(Panel.fit('[bold yellow]Which job board would you like to select?'))
+    choice = int(Prompt.ask('> ',
+                            choices=['1', '2', '3']))
 
     if choice == 1:
         search_job(indeed.scraper_indeed, skill, city, pages)

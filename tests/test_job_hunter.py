@@ -1,43 +1,34 @@
-import pytest
+# import pytest
+# from jobhunter.indeed import scraper_indeed, job_table, table
+#
+#
+# def test_scraper_indeed():
+#     # Call the scraper_indeed function with sample skill, city, and pages
+#     scraper_indeed("Python", "San Francisco", 2)
+#     # Assert that the output table has the expected number of rows
+#     assert len(job_table.rows) == 20
+#     # Assert that the first row of the table has the expected values
+#     assert job_table.rows[0][0] == "#"
+#     assert job_table.rows[0][1] == "DATE"
+#     assert job_table.rows[0][2] == "TITLE"
+#     assert job_table.rows[0][3] == "COMPANY"
+#     assert job_table.rows[0][4] == "LOCATION"
+#     # Assert that the second row of the table has the expected values
+#     assert job_table.rows[1][0] == "1"
+#     assert job_table.rows[1][1] == "job_postdate"
+#     assert job_table.rows[1][2] == "job_title"
+#     assert job_table.rows[1][3] == "company_name"
+#     assert job_table.rows[1][4] == "job_location"
+#     # Assert that the output table has the expected number of rows
+#     assert len(table.rows) == 1
+#     # Assert that the first row of the table has the expected values
+#     assert table.rows[0][0] == "COMPANY NAME"
+#     assert table.rows[0][1] == "LOCATION"
+#     assert table.rows[0][2] == "DESCRIPTION"
+#     assert table.rows[0][3] == "LINK"
+#     assert table.rows[1][0] == "posting[1]"
+#     assert table.rows[1][1] == "posting[2]"
+#     assert table.rows[1][2] == "posting[4]"
+#     assert table.rows[1][3] == "posting[3]"
 
 
-# from jobhunter.interface import
-
-# @pytest.mark.skip("TODO")
-def test_search_job(self):
-    # Test that the search_job function correctly calls the provided scraper function and shows a progress bar
-    pass
-
-
-# @pytest.mark.skip("TODO")
-def test_welcome(self):
-    # Test that the welcome function correctly handles user input and calls the your_job function when prompted
-    pass
-
-
-# @pytest.mark.skip("TODO")
-def test_your_job(self):
-    # Test that the your_job function correctly handles user input and calls the appropriate scraper function
-    # based on user choice
-    pass
-
-
-# @pytest.mark.skip("TODO")
-def test_scraper_indeed(self):
-    # Test that the indeed.scraper_indeed function correctly scrapes job listings for the provided skill and
-    # location
-    pass
-
-
-# @pytest.mark.skip("TODO")
-def test_scraper_simply_hired(self):
-    # Test that the simply hired.scraper_simply_hired function correctly scrapes job listings for the provided
-    # skill and location
-    pass
-
-
-# @pytest.mark.skip("TODO")
-def test_scraper_zip_recruiter(self):
-    # Test that the zip_recruiter.scraper_zip_recruiter function correctly scrapes job listings for the provided
-    # skill and location
-    pass
