@@ -4,13 +4,16 @@ from rich.console import Console
 from rich.table import Table
 from rich.progress import track
 import time
-from navigation import main
+try:
+    from jobhunter.navigation import main
+except:
+    from navigation import main
+
+global set_count
 
 
 def scraper_indeed(skill, city, pages):
-    global set_count
     job_table = Table(title="Job Hunter")
-
     job_table.add_column("#", style="cyan")
     job_table.add_column("DATE", style="cyan")
     job_table.add_column("TITLE", style="cyan")
@@ -63,7 +66,6 @@ def scraper_indeed(skill, city, pages):
                 job_description,
                 job_salary,
             )
-
             set_count.append(record)
 
             job_table.add_row(
@@ -108,16 +110,15 @@ def scraper_indeed(skill, city, pages):
             main(url, button, selector)
 
         if choice == "n":
-            exit()
-
-    print("Would you like go back to job listing (y)es or (n)o to quit")
-    choice = input("> ")
-    if choice == "y":
-        for i in track(range(100), description='Searching Jobs....'):
-            time.sleep(0.02)
-        scraper_indeed(skill, city, pages)
-    if choice == "n":
-        exit()
+            print("Would you like go back to job listing (y)es or (n)o to quit")
+            choice = input("> ")
+            if choice == "y":
+                for i in track(range(100), description='Searching Jobs....'):
+                    time.sleep(0.02)
+                scraper_indeed(skill, city, pages)
+            if choice == "n":
+                exit()
+    return set_count
 
 
 if __name__ == "__main__":

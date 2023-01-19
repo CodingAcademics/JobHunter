@@ -7,7 +7,10 @@ from rich.table import Table
 from rich.progress import track
 from rich.prompt import Prompt
 import time
-from navigation import main
+try:
+    from jobhunter.navigation import main
+except:
+    from navigation import main
 from rich.panel import Panel
 from rich.text import Text
 from rich.console import Console
@@ -41,6 +44,7 @@ def scraper_simply_hired(skill, city, pages):
         # Connecting to zip recruiter
         url = (
                 "https://www.simplyhired.com/search?"
+                + "q="
                 + skill
                 + "&l="
                 + city

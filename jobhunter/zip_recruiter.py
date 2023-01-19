@@ -7,7 +7,11 @@ from rich.table import Table
 from rich.progress import track
 from rich.prompt import Prompt
 import time
-from navigation import main
+try:
+    from jobhunter.navigation import main
+except:
+    from navigation import main
+# from jobhunter.navigation import main
 from rich.panel import Panel
 from rich.text import Text
 from rich.console import Console

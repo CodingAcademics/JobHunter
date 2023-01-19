@@ -4,6 +4,7 @@ from rich.progress import track
 import time
 from rich import print
 from rich.panel import Panel
+
 import indeed
 import simplyhired
 import zip_recruiter
