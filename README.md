@@ -10,13 +10,13 @@ DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
 
 - **using our application takes the tedious nature of clicking through every different job site to find your perfect job**
 
-    1. in its current iteration our application scrapes through three different job sites individually returning the information back to the user
+    1. In its current iteration our application scrapes through three different job sites individually returning the information back to the user.
 
-    2. We return a digestable table of jobs according to your search perameters be it type of work, how many pages you would like to return, what website or maybe sometime soon, from any we can get information from. utalizing scrapfly and cloud scraper we take your peramaters and scower these websites that we think is relevant toy your search
+    2. We return a digestible table of jobs according to your search parameters be it type of work, how many pages you would like to return, what website or maybe sometime soon, from any we can get information from. utilizing scrap-fly and cloud scraper we take your parameters and scrape these websites that we think is relevant toy your search.
 
     3. Great! You have found a bunch of jobs but would love to know more about a specific one.
 
-    4. using our styalized UI follow the prompts and the application will take you right to the company website or the application website, you log in with your credentials and carry on without ever having to typ into google.
+    4. Using our stylized UI follow the prompts and the application will take you right to the company website or the application website, you log in with your credentials and carry on without ever having to typ into google.
 
 ### What problem or pain point does it solve?
 
@@ -28,9 +28,6 @@ DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
 
 ### UML documentation requirements
 
-![Whiteboard Image](./images/13.png)
-![Whiteboard Image](./images/14.png)
-![Whiteboard Image](./images/15.png)
 ![Whiteboard Image](./images/1.png)
 ![Whiteboard Image](./images/4.png)
 ![Whiteboard Image](./images/7.png)
@@ -48,17 +45,17 @@ DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
 
 - `git clone https://github.com/CodingAcademics/Back-End`
 - cd into the directory
-- in JobHunter directory create a virtaul enviornment 
+- in JobHunter directory create a virtual environment 
 
 ![Walkthrough setup](./images/WindowsTerminal_ybMW2zYvW5.png)
 
-- Inside Virtual enviornment
+- Inside Virtual environment
 
 ```python
 pip install -r requirements.txt
 ```
 
-this will ensure that all thae packages and librarys that we used for this project are up to the need of running this file
+this will ensure that all the packages and library's that we used for this project are up to the need of running this file
 
 ```python
 # from the parent directory 
@@ -94,7 +91,7 @@ $ JobHunter/interface.py
 
 - [pyfiglet for Terminal styling](https://pypi.org/project/pyfiglet/0.7/)
 
-- [Scrapfly Web scraping API documentation](https://scrapfly.io/docs)
+- [Scrap-fly Web scraping API documentation](https://scrapfly.io/docs)
 
 - [Mr Fugu](https://www.youtube.com/watch?v=8XWm99Et0tc)
 
