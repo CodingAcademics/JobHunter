@@ -1,6 +1,6 @@
 # Job Hunter
 
-DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
+### *DeShon Dixon* / *Dylan Cabral* / *Don Choi* / *Mathieu Roberts* / *Eric Mungai*
 
 <img width="791" alt="job hunter logo" src="https://user-images.githubusercontent.com/107225817/212418661-7e42a0d9-c000-45b9-bd34-a12e1db7acd4.png">
 
@@ -34,12 +34,13 @@ DeShon Dixon -- Dylan Cabral -- Don Choi -- Mathieu Roberts -- Eric Mungai
 
 ---
 
-## Semantic Versioning
+## Unit Testing
 
-- v.001
-- V.002
-- V.003
-- V.004
+![Whiteboard Image](./images/unit_test_1.png)
+![Whiteboard Image](./images/unit_testing_5.png)
+![Whiteboard Image](./images/unit_testing_7.png)
+![Whiteboard Image](./images/unit_testing_passing.png)
+
 
 ## Instructions for local deployment and packages needed
 
@@ -113,3 +114,6 @@ $ JobHunter/interface.py
 
 - [Dylan Cabral LinkedIn](https://www.linkedin.com/in/dylancabral/)
 - [DeShon Dixon LinkedIn](https://www.linkedin.com/in/deshondixon)
+- [Don Choi LinkedIn](https://www.linkedin.com/in/deshondixon)
+- [Eric Mungai LinkedIn](https://www.linkedin.com/in/eric-kinuthia-488192187/)
+- [Mathieu Roberts LinkedIn](https://www.linkedin.com/in/deshondixon)
