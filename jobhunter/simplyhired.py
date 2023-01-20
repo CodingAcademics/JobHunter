@@ -37,7 +37,8 @@ def scraper_simply_hired(skill, city, pages):
     table.add_column("TITLE", style="cyan")
     table.add_column("COMPANY", style="cyan")
     table.add_column("LOCATION", style="cyan")
-
+    set_count = []
+    count = 1
     for page in range(pages):
         client = ScrapingBeeClient(os.getenv("api_key"))
         # Connecting to zip recruiter
@@ -58,10 +59,6 @@ def scraper_simply_hired(skill, city, pages):
         soup = BeautifulSoup(html, "html.parser")
 
         cards = soup.find_all("div", "SerpJob-jobCard card isp")
-
-        set_count = []
-        count = 1
-
         for card in cards:
             title = card.h3.text.strip() if card.h3 else None
             location = (

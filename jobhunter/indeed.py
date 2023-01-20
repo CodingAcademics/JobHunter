@@ -5,6 +5,7 @@ from rich.table import Table
 from rich.progress import track
 from rich.prompt import Prompt
 import time
+
 try:
     from jobhunter.navigation import main
 except:
@@ -22,22 +23,21 @@ def scraper_indeed(skill, city, pages):
     job_table.add_column("LOCATION", style="cyan")
 
     count = 1
+    set_count = []
     for page in range(pages):
         scraper = cloudscraper.create_scraper()
         url = (
-            "https://www.indeed.com/jobs?q="
-            + skill
-            + "&l="
-            + city
-            + "&sort=date"
-            + "&start="
-            + str(page * 10)
+                "https://www.indeed.com/jobs?q="
+                + skill
+                + "&l="
+                + city
+                + "&sort=date"
+                + "&start="
+                + str(page * 10)
         )
         page = scraper.get(url)
         soup = BeautifulSoup(page.content, "html.parser")
         jobs = soup.find_all("div", "job_seen_beacon")
-
-        set_count = []
 
         for job in jobs:
 
@@ -45,8 +45,8 @@ def scraper_indeed(skill, city, pages):
             company_name = job.find("span", "companyName").text
             job_location = job.find("div", "companyLocation").text
             job_link = (
-                "https://www.indeed.com"
-                + job.find("h2", {"class": "jobTitle"}).find("a")["href"]
+                    "https://www.indeed.com"
+                    + job.find("h2", {"class": "jobTitle"}).find("a")["href"]
             )
             try:
                 job_description = job.find("div", "job-snippet").text

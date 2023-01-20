@@ -37,7 +37,8 @@ def scraper_zip_recruiter(skill, city, pages):
     table.add_column("TITLE", style="cyan")
     table.add_column("COMPANY", style="cyan")
     table.add_column("LOCATION", style="cyan")
-
+    set_count = []
+    count = 1
     for page in range(pages):
         client = ScrapingBeeClient(os.getenv("api_key"))
         # Connecting to zip recruiter
@@ -58,9 +59,6 @@ def scraper_zip_recruiter(skill, city, pages):
         soup = BeautifulSoup(html, "html.parser")
 
         cards = soup.find_all("article", "new_job_item job_item")
-
-        set_count = []
-        count = 1
 
         for card in cards:
             title = card.h2.text.strip() if card.h2 else None
