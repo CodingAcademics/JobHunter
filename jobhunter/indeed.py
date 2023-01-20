@@ -9,7 +9,7 @@ try:
     from jobhunter.navigation import main
 except:
     from navigation import main
-    from rich.text import Text
+from rich.text import Text
 
 
 def scraper_indeed(skill, city, pages):

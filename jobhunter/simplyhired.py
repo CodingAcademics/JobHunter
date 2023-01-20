@@ -6,6 +6,7 @@ from rich.table import Table
 from rich.progress import track
 from rich.prompt import Prompt
 import time
+
 try:
     from jobhunter.navigation import main
 except:
@@ -24,7 +25,7 @@ def scraper_simply_hired(skill, city, pages):
 
     headers = {
         "User-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 "
-                      "Safari/537.36"
+        "Safari/537.36"
     }
 
     client = ScrapingBeeClient(os.getenv("api_key"))
@@ -41,14 +42,14 @@ def scraper_simply_hired(skill, city, pages):
         client = ScrapingBeeClient(os.getenv("api_key"))
         # Connecting to zip recruiter
         url = (
-                "https://www.simplyhired.com/search?"
-                + "q="
-                + skill
-                + "&l="
-                + city
-                + "&sort=date"
-                + "&start="
-                + str(page * 10)
+            "https://www.simplyhired.com/search?"
+            + "q="
+            + skill
+            + "&l="
+            + city
+            + "&sort=date"
+            + "&start="
+            + str(page * 10)
         )
         # Get request to indeed with headers above
         response = client.get(url, headers=headers)
@@ -103,10 +104,12 @@ def scraper_simply_hired(skill, city, pages):
         console = Console()
         console.print(table)
         text = Text()
-        text.append("Would you like to see more details about a particular job?", style="bold blue")
+        text.append(
+            "Would you like to see more details about a particular job?",
+            style="bold blue",
+        )
         console.print(text)
-        choice = Prompt.ask('> ',
-                            choices=['y', 'n']).lower()
+        choice = Prompt.ask("> ", choices=["y", "n"]).lower()
         if choice == "n":
             exit()
         if choice == "y":
@@ -133,18 +136,16 @@ def scraper_simply_hired(skill, city, pages):
             text = Text()
             text.append("Would you like to apply to this job?", style="bold red")
             console.print(text)
-            choice = Prompt.ask('> ',
-                                choices=['y', 'n']).lower()
+            choice = Prompt.ask("> ", choices=["y", "n"]).lower()
             if choice == "y":
                 main(url, button, selector)
             if choice == "n":
                 text = Text()
                 text.append("Would you like go back to job listing?", style="bold red")
                 console.print(text)
-                choice = Prompt.ask('> ',
-                                    choices=['y', 'n']).lower()
+                choice = Prompt.ask("> ", choices=["y", "n"]).lower()
                 if choice == "y":
-                    for i in track(range(100), description='Searching Jobs....'):
+                    for i in track(range(100), description="Searching Jobs...."):
                         time.sleep(0.02)
                     scraper_simply_hired(skill, city, pages)
                 if choice == "n":

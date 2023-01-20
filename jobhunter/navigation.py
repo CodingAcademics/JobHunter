@@ -18,9 +18,8 @@ def main(url, button, selector):
                 apply_button = page.query_selector(selector)
             if apply_button:
                 apply_button.click()
-            print('Do you want to exit program?')
-            choice = Prompt.ask('> ',
-                                choices=['y', 'n']).lower()
+            print("Do you want to exit program?")
+            choice = Prompt.ask("> ", choices=["y", "n"]).lower()
             if choice == "y":
                 sys.exit()
             if choice == "n":
