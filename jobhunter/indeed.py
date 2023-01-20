@@ -68,11 +68,6 @@ def scraper_indeed(skill, city, pages):
                 salary = re.sub(r"(\w)([A-Z])", r"\1 \2", salary_match.group(0))
             else:
                 salary = ""
-            # job_postdate = job.find("span", string="Posted").next_sibling
-            # try:
-            #     job_salary = job.find("div", "salaryOnly").text
-            # except AttributeError:
-            #     job_salary = ""
 
             record = (
                 job_title,
