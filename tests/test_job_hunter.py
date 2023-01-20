@@ -6,14 +6,22 @@ from jobhunter.zip_recruiter import scraper_zip_recruiter
 
 
 def test_scraper_indeed():
-    # # Test that the function is able to scrape job listings
-    # skill = "python"
-    # city = "seattle"
-    # pages = 1
-    # # set_count = []
-    # assert len(scraper_indeed(skill, city, pages)) > 0
-    # # assert len(set_count) > 0
-    pass
+    # Test a basic search for software developer jobs in New York City
+    skill = "software developer"
+    city = "New York City"
+    pages = 2
+    result = scraper_indeed(skill, city, pages)
+
+    # Check that the correct number of rows are returned
+    assert len(result) == 20
+
+    # Check that the first row contains the expected data
+    assert result[0][0] == "Software Developer"
+    assert result[0][1] == "Example Company"
+    assert result[0][2] == "New York City, NY"
+    assert result[0][3] == "https://www.indeed.com/job_link"
+    assert result[0][4] == "Job description text."
+    assert result[0][5] == ""
 
 
 def test_scraper_zip_recruiter():

@@ -3,16 +3,17 @@ from bs4 import BeautifulSoup
 from rich.console import Console
 from rich.table import Table
 from rich.progress import track
+from rich.prompt import Prompt
 import time
 try:
     from jobhunter.navigation import main
 except:
     from navigation import main
-
-global set_count
+    from rich.text import Text
 
 
 def scraper_indeed(skill, city, pages):
+    global set_count
     job_table = Table(title="Job Hunter")
     job_table.add_column("#", style="cyan")
     job_table.add_column("DATE", style="cyan")
@@ -80,14 +81,18 @@ def scraper_indeed(skill, city, pages):
 
     console = Console()
     console.print(job_table)
-
-    print("Would you like to see more details about a particular job (y)es or (n)o?")
-    choice = input("> ").lower()
+    text = Text()
+    text.append("Would you like to see more details about a particular job?", style="bold blue")
+    console.print(text)
+    choice = Prompt.ask('> ',
+                        choices=['y', 'n']).lower()
     if choice == "n":
         exit()
     if choice == "y":
-        print("Which job do you want details about (select number)")
-        number = int(input("> "))
+        text = Text()
+        text.append("Which job do you want details about? [#]", style="bold yellow")
+        console.print(text)
+        number = int(Prompt.ask("> "))
         posting = set_count[number - 1]
 
         table = Table(title=f"{posting[0]}")
@@ -104,14 +109,19 @@ def scraper_indeed(skill, city, pages):
         url = f"{posting[3]}"
         button = "#indeedApplyButton"
         selector = "//a[text()='Apply on company site']"
-        print("Would you like to apply to this job? (y)es or (n)o")
-        choice = input("> ").lower()
+        text = Text()
+        text.append("Would you like to apply to this job?", style="bold red")
+        console.print(text)
+        choice = Prompt.ask('> ',
+                            choices=['y', 'n']).lower()
         if choice == "y":
             main(url, button, selector)
-
         if choice == "n":
-            print("Would you like go back to job listing (y)es or (n)o to quit")
-            choice = input("> ")
+            text = Text()
+            text.append("Would you like go back to job listing?", style="bold red")
+            console.print(text)
+            choice = Prompt.ask('> ',
+                                choices=['y', 'n']).lower()
             if choice == "y":
                 for i in track(range(100), description='Searching Jobs....'):
                     time.sleep(0.02)

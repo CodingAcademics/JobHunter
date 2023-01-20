@@ -2,7 +2,6 @@ import os
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from scrapingbee import ScrapingBeeClient
-from rich.console import Console
 from rich.table import Table
 from rich.progress import track
 from rich.prompt import Prompt
@@ -11,7 +10,6 @@ try:
     from jobhunter.navigation import main
 except:
     from navigation import main
-from rich.panel import Panel
 from rich.text import Text
 from rich.console import Console
 
@@ -140,18 +138,17 @@ def scraper_simply_hired(skill, city, pages):
             if choice == "y":
                 main(url, button, selector)
             if choice == "n":
-                exit()
-            text = Text()
-            text.append("Would you like go back to job listing?", style="bold red")
-            console.print(text)
-            choice = Prompt.ask('> ',
-                                choices=['y', 'n']).lower()
-            if choice == "y":
-                for _ in track(range(100), description="Searching Jobs...."):
-                    time.sleep(0.20)
-                scraper_simply_hired(skill, city, pages)
-            if choice == "n":
-                exit()
+                text = Text()
+                text.append("Would you like go back to job listing?", style="bold red")
+                console.print(text)
+                choice = Prompt.ask('> ',
+                                    choices=['y', 'n']).lower()
+                if choice == "y":
+                    for i in track(range(100), description='Searching Jobs....'):
+                        time.sleep(0.02)
+                    scraper_simply_hired(skill, city, pages)
+                if choice == "n":
+                    exit()
 
 
 if __name__ == "__main__":

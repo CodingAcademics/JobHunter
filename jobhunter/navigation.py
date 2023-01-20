@@ -2,7 +2,6 @@ import time
 from playwright.sync_api import sync_playwright
 import sys
 from rich.prompt import Prompt
-from rich.panel import Panel
 
 
 def main(url, button, selector):
