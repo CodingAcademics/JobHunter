@@ -7,9 +7,9 @@ Dylan Cabral, Don Choi, Eric Mungai, DeShon Dixon, Mathieu Roberts
 #### What are the key strengths of each person on the team?
 ​
 * DeShon - Generalist
-* Dylan - Attidue and Communication 
+* Dylan - Attitude and Communication 
 * Don - Research
-* Eric - Problem Solving and Troubleshooting
+* Eric - Problem-Solving and Troubleshooting
 * Mathieu - Strength adaptability
 ​
 #### How can you best utilize these strengths in the execution of your project?
@@ -17,7 +17,7 @@ Dylan Cabral, Don Choi, Eric Mungai, DeShon Dixon, Mathieu Roberts
 * Dylan - With my soft skills I can help the team to get on the same page when they are feeling overwhelmed, understand when pairs need to be switched, help to create more drive towards where we are going rather than dwelling on the inherent difficulty's of development
 * Eric - Debugging and writing tests
 * Don - Research on anything that we need to utilize. Whenever we get stuck we can look for new ways of coding by googling
-* Mathieu - By ulitizing my adaptability 
+* Mathieu - By utilizing my adaptability 
 * DeShon - Figure out logic of code
 * We'll maintain constant communication via Slack and Remo. 
 ​
@@ -26,7 +26,7 @@ Dylan Cabral, Don Choi, Eric Mungai, DeShon Dixon, Mathieu Roberts
 * Dylan - Craft competency, general improvement in all python skills, write cleaner code, learn from my team
 * Eric - Communication of my thought process
 * Mathieu - Creativity
-* Don - Problem solving
+* Don - Problem-solving
 * DeShon - Better unit testing skills and more tool proficiency.
 ​
 #### Knowing that every person in your team needs to understand all aspects of the project, how do you plan to approach the day-to-day work?
@@ -37,19 +37,19 @@ Dylan Cabral, Don Choi, Eric Mungai, DeShon Dixon, Mathieu Roberts
 ​
 #### What will be your group’s process to resolve conflict, when it arises?
 ​
-* We will all talk about our contributions to project at beginning of day and assign task to each member. We will be mainly using driver/navigator work flow. We will meet up in Remo to discuss the issues if the issue countinues notify Adam or JB.
+* We will all talk about our contributions to project at beginning of day and assign task to each member. We will be mainly using driver/navigator work flow. We will meet up in Remo to discuss the issues if the issue continues to notify Adam or JB.
 ​
 #### What will your team do if one person is taking over the project and not letting the other members contribute?
 ​
-* We will meet up in Remo to discuss the issues. We will dicuss who will be the driver of a certain section of the project but we will be giving input while they are driving and act as navigators. 
+* We will meet up in Remo to discuss the issues. We will discuss who will be the driver of a certain section of the project, but we will be giving input while they are driving and act as navigators. 
 ​
 #### How will you approach each other and the challenges of the project knowing that it is impossible for all members to be at the exact same place in understanding and skill level?
 ​
-* Maintain communication in Slack and try best to notify members the day before if something asrises.
+* Maintain communication in Slack and try best to notify members the day before if something arises.
 ​
 #### How will you raise concerns to members who are not adequately contributing?
 ​
-* We will meet up in Remo to discuss the issues if the issue countinues notify Adam or JB.
+* We will meet up in Remo to discuss the issues if the issue continues to notify Adam or JB.
 ​
 #### How and when will you escalate the conflict if your resolution attempts are unsuccessful?
 ​
@@ -59,7 +59,7 @@ Dylan Cabral, Don Choi, Eric Mungai, DeShon Dixon, Mathieu Roberts
 ​
 #### What hours will you be available to communicate?
 ​
-* Avaviablity is open.
+* Availability is open.
 ​
 #### What platforms will you use to communicate (ie. Slack, phone …)?
 ​
@@ -111,7 +111,7 @@ Dylan Cabral, Don Choi, Eric Mungai, DeShon Dixon, Mathieu Roberts
 ​
 #### What is your Git flow?
 ​
-* While working we check out to a new branch and then we will merge that branch into Dev branch based on a two person review.
+* While working we check out to a new branch, and then we will merge that branch into Dev branch based on a two-person review.
 * Incrementally push "finalized" code to main at check-points like back end code complete.
 ​
 #### Will you be using a PR review workflow?
